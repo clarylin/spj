@@ -43,14 +43,22 @@ def generate_stock_pickle(stock_code, date, output_dir='/data'):
     end_date = start_date + timedelta(days=1)
 
     kbars = api.kbars(contract, start=start_date.strftime('%Y-%m-%d'), end=end_date.strftime('%Y-%m-%d'))
+      # 將數據轉換為 DataFrame
+    df = pd.DataFrame({
+        'ts': pd.to_datetime(kbars.ts),
+        'Open': kbars.Open,
+        'High': kbars.High,
+        'Low': kbars.Low,
+        'Close': kbars.Close,
+        'Volume': kbars.Volume
+    })
 
     # 將數據存為 pickle 文件
     pickle_file = os.path.join(output_dir, f"{stock_code}_{date}.pkl")
+    # 檢查 /data 資料夾是否存在，不存在則創建
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-
-    with open(pickle_file, 'wb') as f:
-        pickle.dump(kbars, f)
+    df.to_pickle(pickle_file)
 
     print(f"股票數據已保存到 {pickle_file}")
 

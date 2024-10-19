@@ -113,9 +113,6 @@ def place_order(position_type):
 
 
 
-
-
-
 '''# 設定每天在 13:40 調整台指期貨
 schedule.every().monday.to.friday.at("13:40").do(adjust_position)
 
