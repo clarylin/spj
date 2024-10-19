@@ -1,7 +1,5 @@
-# spj
-shioaji test project-fdata.py
 # 股票數據 Pickle 生成器
-此專案使用 Docker 與永豐 Shioaji API 來自動下載指定股票代號及日期的數據，並將其保存為 pickle 文件到 `/data` 資料夾中。
+shioaji test project-fdata.py此專案使用 Docker 與永豐 Shioaji API 來自動下載指定股票代號及日期的數據，並將其保存為 pickle 文件到 `/data` 資料夾中。
 
 ## 使用說明
 1. 構建 Docker 映像
@@ -19,7 +17,7 @@ docker run -v ${PWD}/data:/data stock-pickle-generator python fdata.py --stock <
 4.讀取pkl檔案
 執行rd.py檔案
 
-# spj
+# 自動化交易系統
 shioaji test project-fdata2.py
 本專案是基於永豐 Shioaji API 實現的自動化台指期貨交易系統，通過定時從 API 獲取加權指數與台指期貨的價格，根據預設的交易策略自動執行下單。整個系統運行於 Docker 容器中，並且通過 cronjob 定時觸發下單腳本。
 
@@ -49,9 +47,10 @@ import os
 api_key = os.getenv("API_KEY")
 api_secret = os.getenv("API_SECRET")
 
-# 登錄 Shioaji API
+#登錄API
 api.login(api_key, api_secret)
 這樣配置後，Docker 容器內的 Python 腳本將會使用你提供的 API 金鑰和密碼進行登錄，並自動化執行交易。
+
 
 
 
